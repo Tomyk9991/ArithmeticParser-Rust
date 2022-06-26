@@ -1,4 +1,4 @@
-use self::models::{Expression};
+use crate::arithmetic_parser::models::Expression::Expression;
 
 mod models;
 
@@ -69,22 +69,22 @@ impl Interpreter {
         let mut x: Box<Expression> = self.parse_term().unwrap();
         loop {
             if self.eat('+') { x = x.add(self.parse_term()).unwrap(); }
-            else if self.eat('-') { x.sub(self.parse_term()).unwrap(); }
+            else if self.eat('-') { x = x.sub(self.parse_term()).unwrap(); }
             else { return Some(x); }
         }
     }
 
     fn parse_term(&mut self) -> Option<Box<Expression>> {
-        let x: Box<Expression> = self.parse_factor().unwrap();
+        let mut x: Box<Expression> = self.parse_factor().unwrap();
         loop {
-            if self.eat('*') { x.mul(self.parse_term()).unwrap(); }
-            else if self.eat('/') { x.div(self.parse_term()).unwrap(); }
+            if self.eat('*') { x = x.mul(self.parse_term()).unwrap(); }
+            else if self.eat('/') { x = x.div(self.parse_term()).unwrap(); }
             else { return Some(x); }
         }
     }
 
     fn parse_factor(&mut self) -> Option<Box<Expression>> {
-        let mut x: Option<Box<Expression>> = None;
+        let mut x: Option<Box<Expression>>;
         
         if self.eat('+') {
             x = self.parse_factor();
