@@ -1,13 +1,4 @@
-use crate::arithmetic_parser::models::Operator::Operator;
-
-#[derive(Debug, Clone)]
-pub struct Expression {
-    lhs: Option<Box<Expression>>,
-    rhs: Option<Box<Expression>>,
-    operator: Operator,
-    pub value: Option<f64>,
-    func: String
-}
+use crate::arithmetic_parser::models::{Expression, Operator};
 
 impl Default for Expression {
     fn default() -> Self {

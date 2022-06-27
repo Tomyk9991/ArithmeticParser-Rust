@@ -1,14 +1,5 @@
 use std::fmt;
-
-#[derive(PartialEq, Clone, Debug)]
-pub enum Operator {
-    NOOP,
-    ADD,
-    SUB,
-    DIV,
-    MUL,
-    POW,
-}
+use crate::arithmetic_parser::models::Operator;
 
 impl fmt::Display for Operator {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

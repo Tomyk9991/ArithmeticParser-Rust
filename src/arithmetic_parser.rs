@@ -1,6 +1,6 @@
-use crate::arithmetic_parser::models::Expression::Expression;
+use crate::arithmetic_parser::models::Expression;
 
-mod models;
+pub mod models;
 
 pub struct Interpreter {
     source_code: String,
